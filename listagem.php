@@ -1,5 +1,5 @@
 <?php
-$pdo = getPDO();
+require 'conexao.php';
 
 function listarMedicamentos($pdo, $ordem = 'nome') {
     $sql = $pdo->prepare("SELECT * FROM medicamentos ORDER BY $ordem");

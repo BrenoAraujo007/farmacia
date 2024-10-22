@@ -1,3 +1,18 @@
+<?php
+require 'conexao.php';
+
+function addMedicamento($pdo, $medicamento, $quantidade, $preco, $categoria, $validade) {
+    $sql = $pdo->prepare("INSERT INTO medicamentos (medicamento, quantidade, preco, categoria, validade) VALUES (?, ?, ?, ?, ?)");
+    $sql->execute([$medicamento, $quantidade, $preco, $categoria, $validade]);
+    echo 'Adicionado com sucesso';
+}
+
+if (isset($_POST['medicamento'])) {
+    $pdo = getPDO();
+    addMedicamento($pdo, $_POST['medicamento'], $_POST['quantidade'], $_POST['preco'], $_POST['categoria'], $_POST['validade']);
+}
+?>
+
 <head>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
