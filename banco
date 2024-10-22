@@ -1,0 +1,14 @@
+create database farmacia ;
+
+use farmacia;
+
+create table medicamentos (
+id_medicamento int not null auto_increment primary key ,
+medicamento varchar(99),
+quantidade int,
+preco float,
+categoria varchar(33),
+dataV date
+);
+
+select*from medicamentos;
