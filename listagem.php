@@ -1,40 +1,46 @@
 <?php
 require 'conexao.php';
 
-function listarMedicamentos($pdo, $ordem = 'nome') {
-    $sql = $pdo->prepare("SELECT * FROM medicamentos ORDER BY $ordem");
-    $sql->execute();
-    return $sql->fetchAll(PDO::FETCH_ASSOC);
-}
 
-$medicamentos = listarMedicamentos($pdo, isset($_GET['ordem']) ? $_GET['ordem'] : 'nome');
+$sql= "SELECT*FROM usuarios order by id desc";
+
+$result = $conexao->query ($sql);
+print_r(result);
 ?>
 
-<form method="get">
-    Ordenar por:
-    <select name="ordem">
-        <option value="nome">Nome</option>
-        <option value="preco">Preço</option>
-        <option value="categoria">Categoria</option>
-    </select>
-    <input type="submit" value="Ordenar">
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">nomeid_medicamento</th>
+      <th scope="col">medicamento</th>
+      <th scope="col">quantidade</th>
+      <th scope="col">preco</th>
+      <th scope="col">categoria</th>
+      <th scope="col">validade</th>
+      <th scope="col">...</th>
+    </tr>
+  </thead>
+ <tbody>
+    <?php
+    while($user_data = mysqli_fetch_assoc($result))
+    {
 
-<table>
-    <tr>
-        <th>Nome</th>
-        <th>Quantidade</th>
-        <th>Preço</th>
-        <th>Categoria</th>
-        <th>Validade</th>
-    </tr>
-    <?php foreach ($medicamentos as $medicamento): ?>
-    <tr>
-        <td><?= $medicamento['medicamento'] ?></td>
-        <td><?= $medicamento['quantidade'] ?></td>
-        <td><?= $medicamento['preco'] ?></td>
-        <td><?= $medicamento['categoria'] ?></td>
-        <td><?= $medicamento['validade'] ?></td>
-    </tr>
-    <?php endforeach; ?>
+        echo"<tr>";
+        echo"<td>".$user_data['id'].
+    }
+    ?>
+</tbody>
 </table>
+    </div>
+</body>
+</html>
