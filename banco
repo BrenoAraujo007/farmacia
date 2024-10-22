@@ -1,5 +1,3 @@
-create database farmacia ;
-
 use farmacia;
 
 create table medicamentos (
@@ -8,7 +6,19 @@ medicamento varchar(99),
 quantidade int,
 preco float,
 categoria varchar(33),
-dataV date
+validade date
 );
 
+CREATE TABLE usuarios (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    usuario VARCHAR(50) NOT NULL,
+    senha VARCHAR(255) NOT NULL
+);
+
+
+insert into usuarios(usuario,senha)values ("teste","teste");
+
+INSERT INTO usuarios (usuario, senha) VALUES ("teste", "HASH_DA_SENHA_AQUI");
+
 select*from medicamentos;
+select*from usuarios;
