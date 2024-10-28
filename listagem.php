@@ -1,31 +1,31 @@
 <?php
-// Conexão com o banco de dados
-$host = 'localhost'; // ou o host do seu banco de dados
-$username = 'root'; // seu usuário do banco de dados
-$password = 'breno'; // sua senha do banco de dados
-$database = 'farmacia'; // seu banco de dados
+
+$host = 'localhost'; 
+$username = 'root'; 
+$password = 'breno';
+$database = 'farmacia'; 
 
 $conexao = new mysqli($host, $username, $password, $database);
 
-// Verifica se houve erro na conexão
+
 if ($conexao->connect_error) {
     die("Conexão falhou: " . $conexao->connect_error);
 }
 
-// Consulta para selecionar todos os medicamentos
+
 $sql = "SELECT * FROM medicamentos ORDER BY id_medicamento DESC";
 $result = $conexao->query($sql);
 
-$medicamentos = []; // Inicializa o array para armazenar os medicamentos
+$medicamentos = [];
 
 if ($result && $result->num_rows > 0) {
-    // Usa fetch_all para obter todos os resultados
+   
     $medicamentos = $result->fetch_all(MYSQLI_ASSOC);
 } else {
     echo "Nenhum medicamento encontrado.";
 }
 
-// Fecha a conexão
+
 $conexao->close();
 ?>
 
