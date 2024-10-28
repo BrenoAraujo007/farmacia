@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 try {
-    $conn = new PDO("mysql:host=localhost;dbname=farmacia", "root", "cimatec");
+    $conn = new PDO("mysql:host=localhost;dbname=farmacia", "root", "breno");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     echo "Erro de conexão: " . $e->getMessage();

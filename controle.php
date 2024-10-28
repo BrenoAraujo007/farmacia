@@ -8,9 +8,9 @@ function venderMedicamento($pdo, $medicamento, $quantidadeVendida) {
         $novaQuantidade = $medicamentoData['quantidade'] - $quantidadeVendida;
         $sql = $pdo->prepare("UPDATE medicamentos SET quantidade = ? WHERE medicamento = ?");
         $sql->execute([$novaQuantidade, $medicamento]);
-        echo 'Venda realizada com sucesso';
+        echo '<div class="alert alert-success" role="alert">Venda realizada com sucesso</div>';
     } else {
-        echo 'Quantidade insuficiente em estoque';
+        echo '<div class="alert alert-danger" role="alert">Quantidade insuficiente em estoque</div>';
     }
 }
 
@@ -19,8 +19,32 @@ if (isset($_POST['vender'])) {
 }
 ?>
 
-<form method="post">
-    Medicamento: <input type="text" name="medicamento"><br>
-    Quantidade Vendida: <input type="number" name="quantidadeVendida"><br>
-    <input type="submit" name="vender" value="Vender">
-</form>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venda de Medicamentos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Venda de Medicamentos</h1>
+        <form method="post" class="mt-4">
+            <div class="form-group">
+                <label for="medicamento">Medicamento:</label>
+                <input type="text" class="form-control" name="medicamento" id="medicamento" required>
+            </div>
+            <div class="form-group">
+                <label for="quantidadeVendida">Quantidade Vendida:</label>
+                <input type="number" class="form-control" name="quantidadeVendida" id="quantidadeVendida" required>
+            </div>
+            <button type="submit" name="vender" class="btn btn-primary btn-block">Vender</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
